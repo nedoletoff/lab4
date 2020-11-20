@@ -52,10 +52,7 @@ int main()
 	for (int i = 0; i < count; ++i)		//вывести слова в нужном порядке
 	{
 		len = 0;
-		while (words[i][len] != '\0')
-		{
-			++len;
-		}
+		while (words[i][++len] != '\0');
 		while (len >= 0)
 		{
 			putchar(words[i][len]);

@@ -17,7 +17,7 @@ int main()
 		str[i] = getchar();
 		if (str[i] == ' ')
 		       ++numw;
-		if (str[i] == '\0' || str[i] == '\n')
+		if (str[i] == '\n')
 		{
 			str[i] = ' ';
 			++numw;
@@ -25,7 +25,7 @@ int main()
 		}
 	}
 	
-	words = (char**) malloc(numw * sizeof(char*));		//создать массив адресов
+	words = (char**) calloc(numw, sizeof(char*));		//создать массив адресов
 
 	for (int j = 0; j < N; ++j)		//посчитать количество слов и создать слова
 	{
@@ -38,14 +38,10 @@ int main()
 				++len;
 				++j;
 			}
-			words[count] = (char*) malloc((len + 1) * sizeof(char));
+			words[count] = (char*) calloc((len + 1), sizeof(char));
 			for (int i = 0; i <= len; ++i)
-			{
-				words[count][i] = str[first];
-				++first;
-			}
-			words[count][len++] = '\0';
-			++count;
+				words[count][i] = str[first++];
+			words[count++][++len] = '\0';
 		}
 	}
 

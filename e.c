@@ -38,7 +38,7 @@ int main()
 				++len;
 				++j;
 			}
-			words[count] = (char*) calloc((len + 1), sizeof(char));
+			words[count] = (char*) calloc((len), sizeof(char));
 			for (int i = 0; i < len; ++i)
 				words[count][i] = str[first++];
 			words[count++][len] = '\0';
@@ -51,10 +51,7 @@ int main()
 	for (int i = 0; i < count; ++i)		//вывести слова в нужном порядке
 	{
 		len = 0;
-		printf("%d", words[i][len]);
-		while (words[i][++len] != '\0')
-			printf("%d", words[i][len]);
-		printf("%d",len);
+		while (words[i][++len] != '\0');
 		while (len >= 0)
 			putchar(words[i][--len]);
 		printf("\n");

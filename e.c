@@ -19,13 +19,13 @@ int main()
 		       ++numw;
 		if (str[i] == '\n')
 		{
-			str[i] = ' ';
+			str[i] = '\0';
 			++numw;
 			break;
 		}
 	}
 	
-	words = (char**) calloc(numw, sizeof(char*));		//создать массив адресов
+	words = (char**) malloc(numw * sizeof(char*));		//создать массив адресов
 
 	for (int j = 0; j < N; ++j)		//посчитать количество слов и создать слова
 	{

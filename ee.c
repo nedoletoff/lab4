@@ -7,7 +7,7 @@ int main()
 	char str[N] = {'\0'};
 	int count = 0;
 	int first = 0;
-	char* words[N/2] = NULL;
+	char* words[N/2];
 	int len = 0;
 
 	printf("Type string: ");

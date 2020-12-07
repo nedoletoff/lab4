@@ -16,7 +16,7 @@ int main()
 		str[i] = getchar();
 		if (str[i] == '\n')
 		{
-			str[i] = ' ';
+			str[i] = '\0';
 			break;
 		}
 	}

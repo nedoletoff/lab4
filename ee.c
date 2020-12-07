@@ -11,7 +11,7 @@ int main()
 	int len = 0;
 
 	printf("Type string: ");
-	for (int i = 0; i < N - 1; ++i)		//считать строку и посчитать пробелы
+	for (int i = 0; i < N - 1; ++i)		//считать строку
 	{
 		str[i] = getchar();
 		if (str[i] == '\n')

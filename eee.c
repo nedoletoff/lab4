@@ -19,13 +19,13 @@ int main()
 		       ++numw;
 		if (str[i] == '\n')
 		{
-			str[i] = '\0';
+			str[i] = ' ';
 			++numw;
 			break;
 		}
 	}
 	
-	words = (char**) malloc(numw * sizeof(char*));		//создать массив адресов
+	words = (char**) malloc(numw * sizeof(char*));		//создать массив указателей
 
 	for (int j = 0; j < N; ++j)		//посчитать количество слов и создать слова
 	{
@@ -45,7 +45,7 @@ int main()
 		}
 	}
 
-	for (int i = count; i < numw; ++i)	//очистить лишние адреса
+	for (int i = count; i < numw; ++i)	//очистить лишние указатели
 		free(words[i]);
 		
 	for (int i = 0; i < count; ++i)		//вывести слова в нужном порядке

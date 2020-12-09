@@ -7,25 +7,19 @@ int main()
 	char str[N] = {'\0'};
 	int count = 0;
 	int first = 0;
-	int numw = 0;
-	char** words = NULL;
+	char* words[N/2];
 	int len = 0;
 
 	printf("Type string: ");
-	for (int i = 0; i < N - 1; ++i)		//считать строку и посчитать пробелы
+	for (int i = 0; i < N - 1; ++i)		//считать строку
 	{
 		str[i] = getchar();
-		if (str[i] == ' ')
-		       ++numw;
 		if (str[i] == '\n')
 		{
 			str[i] = '\0';
-			++numw;
 			break;
 		}
 	}
-	
-	words = (char**) malloc(numw * sizeof(char*));		//создать массив адресов
 
 	for (int j = 0; j < N; ++j)		//посчитать количество слов и создать слова
 	{
@@ -44,9 +38,6 @@ int main()
 			words[count++][len] = '\0';
 		}
 	}
-
-	for (int i = count; i < numw; ++i)	//очистить лишние адреса
-		free(words[i]);
 		
 	for (int i = 0; i < count; ++i)		//вывести слова в нужном порядке
 	{
@@ -57,7 +48,6 @@ int main()
 		printf("\n");
 		free(words[i]);		//очистить слова
 	}
-	free(words);
 
 	return 0;
 }

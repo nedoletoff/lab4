@@ -2,52 +2,73 @@
 #include <stdlib.h>
 #define N 128
 
-int main()
+void inputs(char* string)
 {
-	char str[N] = {'\0'};
-	int count = 0;
-	int first = 0;
-	char* words[N/2];
 	int len = 0;
-
 	printf("Type string: ");
-	for (int i = 0; i < N - 1; ++i)		//считать строку
+	for (len = 0; len < N - 1; ++len)	
 	{
-		str[i] = getchar();
-		if (str[i] == '\n')
+		string[len] = getchar();
+		if (string[len] == '\n')
 		{
-			str[i] = '\0';
+			string[len] = '\0';
 			break;
 		}
 	}
+}
 
-	for (int j = 0; j < N; ++j)		//посчитать количество слов и создать слова
+int create_words(char* string, char** words)
+{
+	int count = 0;
+	int len = 0;
+	int first = 0;
+	for (int j = 0; j < N; ++j)		
 	{
-		if (str[j] != ' ' && str[j] != '\0')
+		if (string[j] != ' ' && string[j] != '\0' && string[j] != '\t')
 		{
 			len = 0;
 			first = j;
-			while (str[j] != ' ' && str[j] != '\0')
+			while (string[j] != ' ' && string[j] != '\0' && string[j] != '\t')
 			{
 				++len;
 				++j;
 			}
-			words[count] = (char*) calloc((len), sizeof(char));
+			words[count] = (char*) malloc((len) * sizeof(char));
 			for (int i = 0; i < len; ++i)
-				words[count][i] = str[first++];
+				words[count][i] = string[first++];
 			words[count++][len] = '\0';
 		}
 	}
-		
+	return count;
+}
+
+void put_words(char** words, int count)
+{
+	int lenw = 0;
 	for (int i = 0; i < count; ++i)		//вывести слова в нужном порядке
 	{
-		len = 0;
-		while (words[i][++len] != '\0');
-		while (len >= 0)
-			putchar(words[i][--len]);
+		lenw = 0;
+		while (words[i][++lenw] != '\0');
+		while (lenw >= 0)
+			putchar(words[i][--lenw]);
 		printf("\n");
-		free(words[i]);		//очистить слова
+		free(words[i]);		
 	}
+}
 
+
+
+int main()
+{
+	char str[N] = {'\0'};
+	int count = 0;
+	char* words[N/2];
+
+	inputs(str);
+	count = create_words(str, words);
+	put_words(words, count);
+
+
+		
 	return 0;
 }

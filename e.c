@@ -42,31 +42,47 @@ int create_words(char* string, char** words)
 	return count;
 }
 
-void put_words(char** words, int count)
+void put_words(char** words, int count, int check)
 {
 	int lenw = 0;
 	for (int i = 0; i < count; ++i)		//вывести слова в нужном порядке
 	{
 		lenw = 0;
 		while (words[i][++lenw] != '\0');
+		if (check)
 		while (lenw >= 0)
 			putchar(words[i][--lenw]);
+		else 
+		{
+			for (int j = 0; j < lenw; ++j)
+				if (j % 2)
+					putchar(words[i][j-1]);
+				else
+					putchar(words[i][j+1]);
+			if (lenw % 2)
+				putchar(words[i][lenw-1]);
+		}
 		printf("\n");
 		free(words[i]);		
 	}
 }
-
-
 
 int main()
 {
 	char str[N] = {'\0'};
 	int count = 0;
 	char* words[N/2];
-
+	int check = 0;
+	
+	printf("Type number: ");
+    	while(scanf("%d", &check) != 1 || getchar() != '\n')
+    	{
+        	printf("Error, try again\n");
+        	while (getchar() != '\n');
+   	}
 	inputs(str);
 	count = create_words(str, words);
-	put_words(words, count);
+	put_words(words, count, check);
 
 
 		
